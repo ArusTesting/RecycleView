@@ -3,6 +3,7 @@ package ariel.paba.recycleview
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import ariel.paba.recycleview.databinding.ItemRecyclerBinding
 import coil.load
 
@@ -23,14 +24,20 @@ class AdapterRecView(private val listWayang: ArrayList<DcWayang>) :
     override fun onBindViewHolder(
         holder: ListViewHolder,
         position: Int
+
     ) {
         val wayang = listWayang[position]
+        val circularProgressDrawable = CircularProgressDrawable(holder.itemView.context).apply {
+            strokeWidth = 5f
+            centerRadius = 30f
+            start()
+        }
         holder.binding.namaWayang.text = wayang.nama
         holder.binding.karakterWayang.text = wayang.karakter
         holder.binding.deskripsiWayang.text = wayang.deskripsi
         holder.binding.gambarWayang.load(wayang.foto){
             crossfade(enable = true)
-            placeholder(R.drawable.ic_launcher_background)
+            placeholder(circularProgressDrawable)
             error(R.drawable.ic_launcher_background)
         }
     }
