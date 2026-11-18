@@ -5,6 +5,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <ToggleButton
+        android:id="@+id/btnToggleLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOn="List View"
+        android:textOff="Grid View"
+        android:checked="false" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvWayang"
         android:layout_width="match_parent"
