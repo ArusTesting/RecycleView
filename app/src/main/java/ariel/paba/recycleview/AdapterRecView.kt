@@ -2,6 +2,7 @@ package ariel.paba.recycleview
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import ariel.paba.recycleview.databinding.ItemRecyclerBinding
@@ -39,6 +40,13 @@ class AdapterRecView(private val listWayang: ArrayList<DcWayang>) :
             crossfade(enable = true)
             placeholder(circularProgressDrawable)
             error(R.drawable.ic_launcher_background)
+        }
+        holder.binding.gambarWayang.setOnClickListener {
+            Toast.makeText(
+                holder.itemView.context,
+                "Gambar ${wayang.nama} diklik",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
