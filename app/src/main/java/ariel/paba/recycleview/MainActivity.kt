@@ -1,5 +1,6 @@
 package ariel.paba.recycleview
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -62,6 +63,19 @@ class MainActivity : AppCompatActivity() {
                 LinearLayoutManager.VERTICAL
             )
         }
-        binding.rvWayang.adapter = AdapterRecView(listWayang = _arWayang)
+        val adapterWayang = AdapterRecView(listWayang = _arWayang)
+
+        adapterWayang.setOnItemClickCallback(object : AdapterRecView.OnItemClickCallback {
+            override fun onItemClicked(data: DcWayang) {
+                val intent = Intent(this@MainActivity,DetailActivity::class.java).apply {
+                    putExtra("nama", data.nama)
+                    putExtra("karakter", data.karakter)
+                    putExtra("deskripsi", data.deskripsi)
+                    putExtra("foto", data.foto)
+                }
+                startActivity(intent)
+            }
+        })
+        binding.rvWayang.adapter = adapterWayang
     }
 }
